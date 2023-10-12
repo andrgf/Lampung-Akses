@@ -20,15 +20,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.newsapp.presentation.onboarding.common.OnBoardingButton
-import com.example.newsapp.presentation.onboarding.common.OnBoardingButtonText
-import com.example.newsapp.presentation.onboarding.common.OnBoardingIndicator
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.newsapp.presentation.common.OnBoardingButton
+import com.example.newsapp.presentation.common.OnBoardingButtonText
+import com.example.newsapp.presentation.common.OnBoardingIndicator
 import com.example.newsapp.presentation.onboarding.component.OnBoardingContent
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun OnBoardingScreen() {
+fun OnBoardingScreen(
+    event: (OnBoardingEvent) -> Unit
+) {
     
     Column(modifier = Modifier.fillMaxSize()) {
         val pagerState = rememberPagerState(initialPage = 0) {
@@ -82,8 +85,8 @@ fun OnBoardingScreen() {
                     text = buttonState.value[1],
                     onClick = {
                         rememberScope.launch {
-                            if (pagerState.currentPage == 2) {
-
+                            if (pagerState.currentPage == 1) {
+                                event(OnBoardingEvent.SavePref)
                             }
                             else {
                                 pagerState.animateScrollToPage(
@@ -102,5 +105,6 @@ fun OnBoardingScreen() {
 @Preview(showBackground = true)
 @Composable
 fun OnBoardingScreenPreview() {
-    OnBoardingScreen()
+    val viewModel: OnBoardingViewModel = hiltViewModel()
+    OnBoardingScreen(viewModel::onEvent)
 }

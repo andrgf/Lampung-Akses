@@ -1,4 +1,4 @@
-package com.example.newsapp.presentation.onboarding.common
+package com.example.newsapp.presentation.common
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -14,7 +14,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.newsapp.ui.theme.PurpleGrey40
+import com.example.newsapp.ui.theme.WhiteGray
+import com.example.newsapp.ui.theme.Yellow
 
 @Composable
 fun OnBoardingIndicator(
@@ -22,7 +23,7 @@ fun OnBoardingIndicator(
     pageSize: Int,
     selectedPage: Int,
     selectedColor: Color = MaterialTheme.colorScheme.primary,
-    unselectedColor: Color = PurpleGrey40
+    unselectedColor: Color = WhiteGray
 ) {
     Row(
         modifier = modifier,
