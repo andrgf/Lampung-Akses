@@ -26,6 +26,7 @@ import androidx.paging.compose.LazyPagingItems
 import com.example.newsapp.R
 import com.example.newsapp.data.remote.dto.Article
 import com.example.newsapp.presentation.screen.home.component.ArticleList
+import com.example.newsapp.ui.theme.WhiteGray
 
 @Composable
 fun HomeScreen(
@@ -34,7 +35,7 @@ fun HomeScreen(
 ) {
     Column(modifier = Modifier
         .fillMaxSize()
-        .padding(top = 4.dp)
+        .padding(top = 4.dp, bottom = 4.dp)
         .statusBarsPadding()
     ) {
         Column(
@@ -46,8 +47,8 @@ fun HomeScreen(
         ) {
             Text(
                 text = "Lampung Akses",
-                style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold),
-                fontSize = 24.sp,
+                style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold, color = Color.White),
+                fontSize = 20.sp,
                 modifier = Modifier.padding(start = 12.dp)
             )
         }

@@ -20,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.newsapp.R
 import com.example.newsapp.presentation.navigation.NavigationItem
+import com.example.newsapp.ui.theme.WhiteGray
 
 @Composable
 fun NewsBottomBar(
@@ -49,8 +50,8 @@ fun NewsBottomBar(
                 colors = NavigationBarItemDefaults.colors(
                     selectedIconColor = MaterialTheme.colorScheme.primary,
                     selectedTextColor = MaterialTheme.colorScheme.primary,
-                    unselectedIconColor = colorResource(id = R.color.purple_200),
-                    unselectedTextColor = colorResource(id = R.color.purple_200),
+                    unselectedIconColor = WhiteGray,
+                    unselectedTextColor = WhiteGray,
                     indicatorColor = MaterialTheme.colorScheme.background
                 ),
             )
