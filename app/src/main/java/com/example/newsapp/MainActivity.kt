@@ -20,10 +20,11 @@ import com.example.newsapp.ui.theme.NewsAppTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            WindowCompat.setDecorFitsSystemWindows(window, false)
 
-            installSplashScreen()
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        installSplashScreen()
+
+        setContent {
             NewsAppTheme {
                 Box(modifier = Modifier.background(MaterialTheme.colorScheme.background)) {
                     OnBoardingScreen()

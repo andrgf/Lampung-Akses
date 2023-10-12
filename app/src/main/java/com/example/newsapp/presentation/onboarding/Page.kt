@@ -13,7 +13,7 @@ val pages = listOf(
     Page(
         title = "Selamat Datang",
         desc = "Temukan berita terkini yang akan menambah wawasan anda",
-        img = R.drawable.logo
+        img = R.drawable.page1
     ),
     Page(
         title = "Selamat Menikmati",
