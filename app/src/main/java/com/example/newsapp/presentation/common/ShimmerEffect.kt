@@ -29,6 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.example.newsapp.ui.theme.WhiteGray
 import com.example.newsapp.util.dateFormat
 
 fun Modifier.shimmerEffect() = composed { 
@@ -41,7 +42,7 @@ fun Modifier.shimmerEffect() = composed {
             repeatMode = RepeatMode.Reverse
         )
     ).value
-    background(color = Color.Gray)
+    background(color = WhiteGray)
 }
 
 @Composable
@@ -62,23 +63,35 @@ fun ArticleShimmerEffect(
                     .width(40.dp)
                     .height(15.dp)
                     .padding(bottom = 6.dp)
+                    .clip(RoundedCornerShape(3.dp))
                     .shimmerEffect()
             )
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(15.dp)
+                    .height(25.dp)
                     .padding(bottom = 6.dp)
-                    .shimmerEffect()
+                    .clip(RoundedCornerShape(3.dp))
+                    .shimmerEffect(),
+
             )
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(15.dp)
+                    .height(25.dp)
                     .padding(bottom = 6.dp)
+                    .clip(RoundedCornerShape(3.dp))
                     .shimmerEffect()
             )
 
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(20.dp)
+                    .padding(top = 6.dp)
+                    .clip(RoundedCornerShape(3.dp))
+                    .shimmerEffect()
+            )
         }
 
         Box(

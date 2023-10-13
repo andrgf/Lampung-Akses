@@ -32,6 +32,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.newsapp.R
+import com.example.newsapp.data.remote.dto.Article
 import com.example.newsapp.presentation.navigation.component.NewsBottomBar
 import com.example.newsapp.presentation.screen.bookmarks.BookmarksScreen
 import com.example.newsapp.presentation.screen.detail.DetailScreen
@@ -66,37 +67,46 @@ fun NewsNavigator() {
         else -> 0
     }
 
+    val bottomBarVisible = remember(key1 = backStackState) {
+        backStackState?.destination?.route == Route.HomeScreen.route ||
+                backStackState?.destination?.route == Route.SearchScreen.route ||
+                backStackState?.destination?.route == Route.BookmarksScreen.route ||
+                backStackState?.destination?.route == Route.ProfileScreen.route
+    }
+
     Scaffold(
         modifier = Modifier
             .fillMaxSize(),
         bottomBar = {
-            NewsBottomBar(
-                items = bottomNavigationItems,
-                selectedItem = selectedItem,
-                onItemClick = { index ->
-                    when (index) {
-                        0 -> navigateTo(
-                            navController = navController,
-                            route = Route.HomeScreen.route
-                        )
+            if (bottomBarVisible) {
+                NewsBottomBar(
+                    items = bottomNavigationItems,
+                    selectedItem = selectedItem,
+                    onItemClick = { index ->
+                        when (index) {
+                            0 -> navigateTo(
+                                navController = navController,
+                                route = Route.HomeScreen.route
+                            )
 
-                        1 -> navigateTo(
-                            navController = navController,
-                            route = Route.SearchScreen.route
-                        )
+                            1 -> navigateTo(
+                                navController = navController,
+                                route = Route.SearchScreen.route
+                            )
 
-                        2 -> navigateTo(
-                            navController = navController,
-                            route = Route.BookmarksScreen.route
-                        )
+                            2 -> navigateTo(
+                                navController = navController,
+                                route = Route.BookmarksScreen.route
+                            )
 
-                        3 -> navigateTo(
-                            navController = navController,
-                            route = Route.ProfileScreen.route
-                        )
+                            3 -> navigateTo(
+                                navController = navController,
+                                route = Route.ProfileScreen.route
+                            )
+                        }
                     }
-                }
-            )
+                )
+            }
         }) {
         val bottomPadding = it.calculateBottomPadding()
         NavHost(
@@ -109,13 +119,26 @@ fun NewsNavigator() {
                 val articles = viewModel.news.collectAsLazyPagingItems()
                 HomeScreen(
                     article = articles,
-                    navigate = { navigateTo(navController = navController, route = it) })
+                    navigateToDetail = {
+                        navigateToDetail(
+                            navController = navController,
+                            article = it
+                        )
+                    }
+                )
             }
             composable(route = Route.SearchScreen.route) {
                 SearchScreen()
             }
             composable(route = Route.DetailScreen.route) {
-                DetailScreen()
+                navController.previousBackStackEntry?.savedStateHandle?.get<Article?>("article")
+                    ?.let { article ->
+                        DetailScreen(
+                            article = article,
+                            event = {},
+                            onBackClick = {navController.navigateUp()}
+                        )
+                    }
             }
             composable(route = Route.BookmarksScreen.route) {
                 BookmarksScreen()
@@ -137,4 +160,11 @@ private fun navigateTo(navController: NavController, route: String) {
         launchSingleTop = true
         restoreState = true
     }
+}
+
+private fun navigateToDetail(navController: NavController, article: Article){
+    navController.currentBackStackEntry?.savedStateHandle?.set("article", article)
+    navController.navigate(
+        route = Route.DetailScreen.route
+    )
 }

@@ -26,33 +26,24 @@ import androidx.paging.compose.LazyPagingItems
 import com.example.newsapp.R
 import com.example.newsapp.data.remote.dto.Article
 import com.example.newsapp.presentation.screen.home.component.ArticleList
+import com.example.newsapp.presentation.screen.home.component.HomeTopBar
 import com.example.newsapp.ui.theme.WhiteGray
 
 @Composable
 fun HomeScreen(
     article: LazyPagingItems<Article>,
-    navigate:(String)-> Unit
+    navigateToDetail:(Article)-> Unit
 ) {
     Column(modifier = Modifier
         .fillMaxSize()
         .padding(top = 4.dp, bottom = 4.dp)
         .statusBarsPadding()
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(50.dp)
-                .background(MaterialTheme.colorScheme.primary),
-            verticalArrangement = Arrangement.Center
-        ) {
-            Text(
-                text = "Lampung Akses",
-                style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold, color = Color.White),
-                fontSize = 20.sp,
-                modifier = Modifier.padding(start = 12.dp)
-            )
-        }
-        ArticleList(articles = article, onClick = {
-        })
+        HomeTopBar()
+
+        ArticleList(
+            articles = article,
+            onClick = navigateToDetail
+        )
     }
 }
