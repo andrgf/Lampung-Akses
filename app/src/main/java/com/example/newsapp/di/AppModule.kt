@@ -8,6 +8,7 @@ import com.example.newsapp.domain.pref.UserPref
 import com.example.newsapp.domain.repository.NewsRepository
 import com.example.newsapp.domain.usecases.news.GetNews
 import com.example.newsapp.domain.usecases.news.NewsUseCases
+import com.example.newsapp.domain.usecases.news.SearchNews
 import com.example.newsapp.domain.usecases.pref.AppPrefUseCases
 import com.example.newsapp.domain.usecases.pref.ReadPref
 import com.example.newsapp.domain.usecases.pref.SavePref
@@ -63,7 +64,8 @@ object AppModule {
         newsRepository: NewsRepository
     ): NewsUseCases {
         return NewsUseCases(
-            getNews = GetNews(newsRepository)
+            getNews = GetNews(newsRepository),
+            search = SearchNews(newsRepository)
         )
     }
 }
