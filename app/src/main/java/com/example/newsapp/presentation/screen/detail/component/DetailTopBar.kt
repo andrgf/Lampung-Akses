@@ -44,6 +44,7 @@ fun DetailTopBar(
                 )
             }
         },
+
         actions = {
             Row {
                 IconButton(
