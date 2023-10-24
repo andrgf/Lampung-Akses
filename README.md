@@ -1,4 +1,4 @@
-# Lampung-Akses
+# Lampung-Akses(Jetpack Compose)
 
 <div align="start">
   <img src="https://github.com/andrgf/Lampung-Akses/assets/125901893/8603c942-17b2-454e-ac53-40ed538a85b4" width="200px"</img> 
