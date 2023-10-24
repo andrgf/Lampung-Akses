@@ -19,7 +19,7 @@ import androidx.core.view.WindowCompat
 private val DarkColorScheme = darkColorScheme(
     primary = Yellow,
     background = Black,
-    surface = LightBlack,
+    surface = Color.White,
     error = DarkRed
 )
 
@@ -35,7 +35,7 @@ private val LightColorScheme = lightColorScheme(
 fun NewsAppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {

@@ -26,11 +26,15 @@ import com.example.newsapp.presentation.screen.bookmarks.BookmarksScreen
 import com.example.newsapp.presentation.screen.detail.DetailScreen
 import com.example.newsapp.presentation.screen.home.HomeScreen
 import com.example.newsapp.presentation.screen.home.HomeViewModel
+import com.example.newsapp.presentation.screen.home.content.EverythingScreen
+import com.example.newsapp.presentation.screen.home.content.ViralScreen
 import com.example.newsapp.presentation.screen.profile.ProfileScreen
 import com.example.newsapp.presentation.screen.search.SearchScreen
 import com.example.newsapp.presentation.screen.search.SearchViewModel
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.rememberPagerState
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalPagerApi::class)
 @Composable
 fun NewsNavigator() {
 
@@ -107,6 +111,33 @@ fun NewsNavigator() {
                 val viewModel: HomeViewModel = hiltViewModel()
                 val articles = viewModel.news.collectAsLazyPagingItems()
                 HomeScreen(
+                    article = articles,
+                    navigateToDetail = {
+                        navigateToDetail(
+                            navController = navController,
+                            article = it
+                        )
+                    }
+                )
+            }
+            composable(route = Route.Everything.route) {
+                val viewModel: HomeViewModel = hiltViewModel()
+                val articles = viewModel.news.collectAsLazyPagingItems()
+                val pagerState = rememberPagerState()
+                EverythingScreen(
+                    article = articles,
+                    navigateToDetail = {
+                        navigateToDetail(
+                            navController = navController,
+                            article = it
+                        )
+                    }
+                )
+            }
+            composable(route = Route.TopHeadlines.route) {
+                val viewModel: HomeViewModel = hiltViewModel()
+                val articles = viewModel.news.collectAsLazyPagingItems()
+                ViralScreen(
                     article = articles,
                     navigateToDetail = {
                         navigateToDetail(

@@ -2,6 +2,7 @@ package com.example.newsapp.presentation.screen.search
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -22,10 +23,12 @@ fun SearchScreen(
 ) {
     Column(
         modifier = Modifier
-            .padding(8.dp)
+            .fillMaxSize()
+            .padding(top = 4.dp, bottom = 4.dp)
             .statusBarsPadding()
     ) {
         SearchBar(
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp),
             text = result.query,
             readOnly = false,
             onSearchChange = { event(SearchEvent.UpdateQuery(it)) },

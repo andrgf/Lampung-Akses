@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Starting.Theme" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenAnimatedIcon">@drawable/logo</item>
-        <item name="windowSplashScreenBackground">#1E1E1E</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/logo_lampung_akses</item>
+        <item name="splashScreenIconSize">2dp</item>
+        <item name="windowSplashScreenBackground">#F7D047</item>
         <item name="postSplashScreenTheme">@style/Theme.NewsApp</item>
     </style>
 </resources>

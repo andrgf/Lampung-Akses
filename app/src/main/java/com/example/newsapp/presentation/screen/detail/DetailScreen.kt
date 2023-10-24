@@ -1,4 +1,4 @@
-package com.example.newsapp.presentation.screen.detail
+  package com.example.newsapp.presentation.screen.detail
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.Column
@@ -47,7 +47,8 @@ fun DetailScreen(
             onBookmarksClick = {
                 event(DetailEvent.SaveArticle)
             },
-            onBackClick = onBackClick
+            onBackClick = onBackClick,
+            onBrowserClick = {}
         )
         
         LazyColumn(
@@ -62,7 +63,7 @@ fun DetailScreen(
         ) {
             item {
                 Text(
-                    text = article.author,
+                    text = article.source.name,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.primary

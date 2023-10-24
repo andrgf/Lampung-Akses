@@ -5,6 +5,8 @@ sealed class Route(
 ) {
     object OnBoardingScreen: Route(route = "onBoarding")
     object HomeScreen: Route(route = "home")
+    object TopHeadlines: Route(route = "top_headlines")
+    object Everything: Route(route = "everything")
     object SearchScreen: Route(route = "search")
     object BookmarksScreen: Route(route = "bookmarks")
     object DetailScreen: Route(route = "detail")
